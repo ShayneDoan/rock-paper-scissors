@@ -56,27 +56,21 @@ function playRound() {
 }
 
 function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    for(let i = 0; i < 5; i++) {
-        if (playerScore === 3) {
-            break;
-        }
-        if (computerScore === 3){
-            break;
-        }
-        let pick = prompt("Please enter your selection");
-        if (playRound(pick, getComputerChoice()) === 1) {
+    let playerScore = 0, computerScore = 0;
+    let winner, gameRound;
+    for (let i = 0; i < 5; i++){
+        gameRound = playRound();
+        console.log(gameRound);
+
+        if (result.charAt(4) === 'w') {
             playerScore++;
-        } else if (playRound(pick, getComputerChoice()) === 0) {
-            computerScore++;
         } else {
-            alert("You tied!");
+            computerScore++;
         }
-        console.log(playerScore);
-        console.log(computerScore);
     }
-    return "Thanks For Playing!";
+    playerScore > computerScore 
+        ? (winner = "Player")
+        : (winner = "Computer");
+    return (`${winner} is the winner!`);
 }
 
-game();
