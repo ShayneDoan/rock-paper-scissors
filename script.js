@@ -52,17 +52,18 @@ function playRound() {
         console.log("Draw!");
         return playRound();
     }
-
+    return result;
 }
 
 function game() {
     let playerScore = 0, computerScore = 0;
-    let winner, gameRound;
+    let winner;
+    let gameRound;
     for (let i = 0; i < 5; i++){
         gameRound = playRound();
         console.log(gameRound);
 
-        if (result.charAt(4) === 'w') {
+        if (gameRound.charAt(4) === 'w') {
             playerScore++;
         } else {
             computerScore++;
