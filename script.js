@@ -17,6 +17,21 @@ function getComputerChoice() {
     return computerChoice;
 }
 
+function getPlayerChoice() {
+    let playerPick = prompt("Please enter your selection");
+    if (playerPick) {
+        playerPick = playerPick.toUpperCase();
+        if (playerPick === "ROCK" || playerPick === "PAPER" || playerPick === "SCISSORS") {
+            return playerPick;
+        }
+        console.log("Incorrect Input");
+        return getPlayerChoice();
+    }
+    else {
+        return getPlayerChoice();
+    }
+}
+
 function playRound(playerSelection, computerSelection) {
     playerPick = playerSelection.toUpperCase();
     if (playerPick === "ROCK" && computerSelection === "SCISSORS") {
