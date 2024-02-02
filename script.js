@@ -17,61 +17,52 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-function getPlayerChoice() {
-    let playerPick = prompt("Please enter your selection");
-    if (playerPick) {
-        playerPick = playerPick.toUpperCase();
-        if (playerPick === "ROCK" || playerPick === "PAPER" || playerPick === "SCISSORS") {
-            return playerPick;
-        }
-        console.log("Incorrect Input");
-        return getPlayerChoice();
-    }
-    else {
-        return getPlayerChoice();
-    }
-}
+let playerScore = 0;
+let computerScore = 0;
+let roundsPlayed = 0;
 
-function playRound() {
-    let result;
-    let playerSelection = getPlayerChoice();
-    let computerSelection = getComputerChoice();
+function playRound(playerSelection, computerSelection) {
     if (
         (playerSelection === "ROCK" && computerSelection === "SCISSORS") ||
         (playerSelection === "PAPER" && computerSelection === "ROCK") ||
         (playerSelection === "SCISSORS" && computerSelection === "PAPER")
     ) {
-        result = `You win! ${computerSelection} beats ${playerSelection}`;
+        playerScore++;
+        return `You win! ${computerSelection} beats ${playerSelection}`;
     } else if (
         (playerSelection === "ROCK" && computerSelection === "PAPER") ||
         (playerSelection === "PAPER" && computerSelection === "SCISSORS") ||
         (playerSelection === "SCISSORS" && computerSelection === "ROCK")
     ) {
-        result = `You lose! ${computerSelection} beats ${playerSelection}`;
+        computerScore++;
+        return `You lose! ${computerSelection} beats ${playerSelection}`;
     } else {
-        console.log("Draw!");
-        return playRound();
+        return "Draw!";
     }
-    return result;
 }
 
-function game() {
-    let playerScore = 0, computerScore = 0;
-    let winner;
-    let gameRound;
-    for (let i = 0; i < 5; i++){
-        gameRound = playRound();
-        console.log(gameRound);
+function game(playerInput) {
+    const computerInput = getComputerChoice(); 
+    const result = playRound(playerInput, computerInput);
 
-        if (gameRound.charAt(4) === 'w') {
-            playerScore++;
-        } else {
-            computerScore++;
-        }
+    //displayResult
+    //updateScores
+
+    roundsPlayed++;
+    if (roundsPlayed === 5) {
+        determineWinner();
     }
-    playerScore > computerScore 
-        ? (winner = "Player")
-        : (winner = "Computer");
-    return (`${winner} is the winner!`);
 }
 
+function determineWinner() {
+    if (playerScore > computerScore) {
+        display("You win! Congratulations!");
+    } else if (computerScore > playerScore) {
+        display("You lose!");
+    } else {
+        display("Tie!")
+    }
+    playerScore = 0;
+    computerScore = 0;
+    roundsPlayed = 0;
+}
