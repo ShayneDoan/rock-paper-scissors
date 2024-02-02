@@ -45,8 +45,8 @@ function game(playerInput) {
     const computerInput = getComputerChoice(); 
     const result = playRound(playerInput, computerInput);
 
-    //displayResult
-    //updateScores
+    display(result);
+    updateScores();
 
     roundsPlayed++;
     if (roundsPlayed === 5) {
@@ -70,4 +70,9 @@ function determineWinner() {
 function display(result) {
     const resultDiv = document.getElementById("result");
     resultDiv.textContent = result;
+}
+
+function updateScores() {
+    document.getElementById("playerScore").textContent = playerScore;
+    document.getElementById("computerScore").textContent = computerScore;
 }
