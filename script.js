@@ -28,7 +28,7 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection === "SCISSORS" && computerSelection === "PAPER")
     ) {
         playerScore++;
-        return `You win! ${computerSelection} beats ${playerSelection}`;
+        return `You win! ${playerSelection} beats ${computerSelection}`;
     } else if (
         (playerSelection === "ROCK" && computerSelection === "PAPER") ||
         (playerSelection === "PAPER" && computerSelection === "SCISSORS") ||
@@ -76,3 +76,10 @@ function updateScores() {
     document.getElementById("playerScore").textContent = playerScore;
     document.getElementById("computerScore").textContent = computerScore;
 }
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        game(button.id);
+    })
+});
