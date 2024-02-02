@@ -66,3 +66,8 @@ function determineWinner() {
     computerScore = 0;
     roundsPlayed = 0;
 }
+
+function display(result) {
+    const resultDiv = document.getElementById("result");
+    resultDiv.textContent = result;
+}
